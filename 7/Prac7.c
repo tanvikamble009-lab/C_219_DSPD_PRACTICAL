@@ -12,11 +12,11 @@ void DFS(int start, int n) {
     for (i = 0; i < n; i++)
         visited[i] = 0;
 
+    top = -1;
     stack[++top] = start;
     visited[start] = 1;
 
-    printf("\nDFS Traversal: ");
-    printf("%d ", start + 1);
+    printf("DFS: %d ", start + 1);
 
     while (top >= 0) {
         k = stack[top];
@@ -35,8 +35,8 @@ void DFS(int start, int n) {
         if (!found)
             top--;
     }
+    printf("\n");
 }
-
 
 void BFS(int start, int n) {
     int i, k;
@@ -47,8 +47,7 @@ void BFS(int start, int n) {
     queue[++rear] = start;
     visited[start] = 1;
 
-    printf("\nBFS Traversal: ");
-    printf("%d ", start + 1);
+    printf("BFS: %d ", start + 1);
 
     while (front != rear) {
         k = queue[++front];
@@ -61,30 +60,29 @@ void BFS(int start, int n) {
             }
         }
     }
+    printf("\n");
 }
-
 
 int main() {
     int n, i, j, start;
 
-    printf("Enter number of nodes: ");
+    printf("N: ");
     scanf("%d", &n);
 
-    printf("\nEnter adjacency matrix (%d x %d):\n", n, n);
+    printf("Mat:\n");
     for (i = 0; i < n; i++) {
         for (j = 0; j < n; j++) {
             scanf("%d", &adj[i][j]);
-           
         }
-       
     }
 
-    printf("\nEnter start node (1 to %d): ", n);
+    printf("Start: ");
     scanf("%d", &start);
-    start = start - 1; 
+    start--;
 
-    DFS(start, n);
     BFS(start, n);
+    DFS(start, n);
 
     return 0;
 }
+
